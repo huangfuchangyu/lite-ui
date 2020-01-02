@@ -1,7 +1,5 @@
 import React from 'react'
-import Root from './components/index'
-import Home from './demos/Home'
-import './App.scss'
+import Home from '../demos/Home'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -11,10 +9,6 @@ function App() {
       <Switch>
 
         <Route exact path="/">
-          <Root />
-        </Route>
-
-        <Route path="/about">
           <Home />
         </Route>
 
@@ -24,4 +18,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
