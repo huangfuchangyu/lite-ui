@@ -1,0 +1,19 @@
+/*
+ * Desc: common mixins
+ * File Created: Thursday, 2nd January 2020 5:29:24 pm
+ * Author: huangfuchangyu (changyu.huangfu@tcl.com)
+ */
+
+/// clear fix
+/// @param {*} none
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
