@@ -138,6 +138,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/helper-create-regexp-features-plugin": "^7.7.4",
     "sass-loader": "^8.0.0"
   }
 }

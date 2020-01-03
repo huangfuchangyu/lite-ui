@@ -15,16 +15,16 @@ const OperBtn = props => {
 
   return (
 
-    <div className='container'>
+    <div className='operBtn'>
 
-      <img src={titleIcon} alt="" />
+      <img src={titleIcon} className='titleIcon' alt="" />
 
-      <div>
-        <span>{text}</span>
-        <span>{desc}</span>
+      <div className='textBox'>
+        <span className='title'>{text}</span>
+        <span className='desc'>{desc}</span>
       </div>
 
-      <img src={operIcon} alt="" />
+      <img src={operIcon} className='operIicon' alt="" />
 
     </div>
 

@@ -1,9 +1,9 @@
 @import "../../../mixins.scss";
 
-.title {
+.homeTitle {
   display: block;
   @include remCalc(font-size, 3);
   text-align: center;
   width: 100%;
-  @include remCalc(padding-top, 2);
+  @include remCalc(padding-top, 4);
 }

@@ -14,7 +14,7 @@ const Title = props => {
   let { text } = props
 
   return (
-    <span className='title'>{text}</span>
+    <span className='homeTitle'>{text}</span>
   )
 }
 

@@ -9,7 +9,7 @@
 
   @include displayFlex(row, space-around);
 
-  $bILen: 5;
+  $bILen: 4.5;
   .bannerImg {
     @include remCalc(width, $bILen);
     @include remCalc(height, $bILen);
