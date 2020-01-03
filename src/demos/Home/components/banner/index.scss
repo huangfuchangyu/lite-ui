@@ -1,0 +1,20 @@
+@import "../../../mixins.scss";
+
+$browser-default-font-size: 16px !default;
+
+.bannerContanter {
+  width: 100%;
+  @include remCalc(padding-top, 4);
+  @include remCalc(padding-bottom, 1);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  $bILen: 5;
+  .bannerImg {
+    @include remCalc(width, $bILen);
+    @include remCalc(height, $bILen);
+  }
+}

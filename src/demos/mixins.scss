@@ -1,21 +1,7 @@
-/*
- * Desc: common mixins
- * File Created: Thursday, 2nd January 2020 5:29:24 pm
- * Author: huangfuchangyu (changyu.huangfu@tcl.com)
- */
+$browser-default-font-size: 16px !default;
 
-/// clear fix
-/// @param {*} none
-
-@mixin clearfix() {
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
 }
 
 /// rem

@@ -1,5 +1,15 @@
-$browser-default-font-size: 16px !default;
+@import "../layout.scss";
+@import "../vars.scss";
+
+// $browser-default-font-size: 16px !default;
 
 html {
-  font-size: $browser-default-font-size;
+  font-size: 62.5%;
+}
+
+.container {
+  @extend .container;
+  background-color: $white;
+
+  overflow: hidden;
 }
