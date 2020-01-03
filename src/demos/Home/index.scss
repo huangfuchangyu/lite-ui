@@ -9,7 +9,7 @@ html {
 
 .container {
   @extend .container;
-  background-color: $white;
+  background-color: $grey-bg;
 
   overflow: hidden;
 }

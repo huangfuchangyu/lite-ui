@@ -1,0 +1,14 @@
+@import "../../../mixins.scss";
+@import "../../../vars.scss";
+
+.container {
+  width: 85%;
+  @include horizontalCenter();
+
+  @include remCalc(padding-top, 1);
+  @include remCalc(padding-bottom, 1);
+
+  background-color: $white;
+
+  @include displayFlex(row, space-between);
+}
