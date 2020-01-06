@@ -9,7 +9,7 @@
   @include remCalc(padding, 1, 1, 1, 0.5);
   @include remCalc(border-radius, 0.5);
   @include remCalc(margin-top, 3);
-  @include displayFlex(row, space-between);
+  @include displayFlex(row, space-between, center, no-wrap);
 
   $titleLen: 3.7;
   .titleIcon {
@@ -25,7 +25,8 @@
 
   .textBox {
     @include displayFlex(column, flex-start, flex-start);
-    @include remCalc(width, $titleLen * 7);
+    @include remCalc(padding-left, 1);
+    width: 100%;
 
     .title {
       @include remCalc(font-size, 1.7);
