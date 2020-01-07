@@ -1,0 +1,23 @@
+@import "../layout.scss";
+@import "../vars.scss";
+@import "../mixins.scss";
+
+.demoBtnContainer {
+  @extend .container;
+  @include remCalc(padding, 1);
+
+  .demoBlank {
+    @include remCalc(height, 2);
+  }
+
+  .horBlank {
+    @include remCalc(width, 2);
+  }
+
+  .flex-hor {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}

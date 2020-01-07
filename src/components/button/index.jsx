@@ -14,30 +14,51 @@ const Button = props => {
   const {
     type,
     size,
+    disabled,
+    onClick,
+    icon,
+    style,
+    activeStyle,
+    children,
     ...restProps
   } = props
 
   return (
     <a
+      className={
+        `
+        lite-ui-button-base 
+        lite-ui-button-type-${type} 
+        lite-ui-button-size-${size} 
+        ${disabled && 'lite-ui-button-disabled'}
+        `
+      }
       {...restProps}
     >
-      button
+      <span>{children}</span>
     </a>
   )
 
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
-  size: PropTypes.string,
+  type: PropTypes.oneOf(['primary', 'ghost', 'warning']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
+  icon: PropTypes.node,
   style: PropTypes.object,
   activeStyle: PropTypes.object,
-  icon: PropTypes.node,
 }
 
 Button.defaultProps = {
+  type: 'primary',
+  size: 'large',
+  disabled: false,
+  onClick: _ => console.log('please attach a method to Button component'),
+  icon: null,
+  style: {},
+  activeStyle: {}
 }
 
 export default React.memo(Button)

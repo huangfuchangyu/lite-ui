@@ -11,11 +11,11 @@ import PropTypes from 'prop-types'
 
 const OperBtn = props => {
 
-  let { titleIcon, text, desc, operIcon } = props
+  let { titleIcon, text, desc, operIcon, onPress } = props
 
   return (
 
-    <div className='operBtn'>
+    <div className='operBtn' onClick={onPress}>
 
       <img src={titleIcon} className='titleIcon' alt="" />
 
@@ -37,6 +37,7 @@ OperBtn.propTypes = {
   text: PropTypes.string,
   desc: PropTypes.string,
   operIcon: PropTypes.any,
+  onPress: PropTypes.func,
 }
 
 OperBtn.defaultProps = {
@@ -44,6 +45,7 @@ OperBtn.defaultProps = {
   text: '',
   desc: '',
   operIcon: null,
+  onPress: _ => console.log('please attach a method to this component')
 }
 
 export default React.memo(OperBtn)

@@ -6,6 +6,7 @@
 
 import React from 'react'
 import './index.scss'
+import { useHistory } from "react-router-dom"
 
 import {
   Svg_Ball,
@@ -21,6 +22,11 @@ import Title from './components/title'
 import OperBar from './components/operation'
 
 const Home = _ => {
+  let history = useHistory()
+
+  const btnPress = _ => {
+    history.push("/buttons")
+  }
 
   return (
     <div className='container'>
@@ -34,6 +40,7 @@ const Home = _ => {
         operIcon={Svg_Right_Point}
         text='基础'
         desc='包含 颜色, 按钮, 图标 等'
+        onPress={btnPress}
       />
 
       <OperBar

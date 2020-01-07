@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from '../demos/Home'
+import DemoButtons from '../demos/Buttons'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -10,6 +11,10 @@ function App() {
 
         <Route exact path="/">
           <Home />
+        </Route>
+        
+        <Route exact path="/buttons">
+          <DemoButtons />
         </Route>
 
       </Switch>

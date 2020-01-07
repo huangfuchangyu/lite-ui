@@ -4,6 +4,12 @@
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
 
+$browser-default-font-size: 16px !default;
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
 /// clear fix
 /// @param {*} none
 
@@ -48,4 +54,13 @@
 
   #{$property}: $pxValues;
   #{$property}: $remValues;
+}
+
+/// word break
+/// @param  none
+
+@mixin wordBreak() {
+  text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: nowrap;
 }
