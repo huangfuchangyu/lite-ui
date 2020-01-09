@@ -1,5 +1,5 @@
 /*
- * Desc: demo page of buttons
+ * Desc: demo page of buttons (三级页面)
  * File Created: Tuesday, 7th January 2020 2:40:03 pm
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
@@ -17,15 +17,7 @@ const DemoPageOfButtons = _ => {
 
       <div className='demoBlank'></div>
 
-      <Button type='primary' size='large' disabled>primary disabled</Button>
-
-      <div className='demoBlank'></div>
-
       <Button type='ghost' size='large'>ghost</Button>
-
-      <div className='demoBlank'></div>
-
-      <Button type='ghost' size='large' disabled>ghost disabled</Button>
 
       <div className='demoBlank'></div>
 
@@ -33,7 +25,7 @@ const DemoPageOfButtons = _ => {
 
       <div className='demoBlank'></div>
 
-      <Button type='warning' size='large' disabled>warning disabled</Button>
+      <Button type='primary' size='large' disabled>disabled</Button>
 
       <div className='demoBlank'></div>
 
@@ -49,16 +41,6 @@ const DemoPageOfButtons = _ => {
 
       <div className='demoBlank'></div>
 
-      <div className='flex-hor'>
-
-        <Button type='primary' size='medium' disabled>primary</Button>
-        <div className='horBlank' />
-        <Button type='ghost' size='medium' disabled>ghost</Button>
-        <div className='horBlank' />
-        <Button type='warning' size='medium' disabled>warning</Button>
-
-      </div>
-
       <div className='demoBlank'></div>
 
       <div className='flex-hor'>
@@ -71,17 +53,6 @@ const DemoPageOfButtons = _ => {
 
       </div>
       <div className='demoBlank'></div>
-
-      <div className='flex-hor'>
-
-        <Button type='primary' size='small' disabled>primary</Button>
-        <div className='horBlank' />
-        <Button type='ghost' size='small' disabled>ghost</Button>
-        <div className='horBlank' />
-        <Button type='warning' size='small' disabled>warning</Button>
-
-      </div>
-
 
     </div>
   )

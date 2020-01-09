@@ -4,9 +4,9 @@
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import './index.scss'
-import { useHistory } from "react-router-dom"
+// import { useHistory } from 'react-router-dom'
 
 import {
   Svg_Ball,
@@ -21,51 +21,58 @@ import Banner from './components/banner'
 import Title from './components/title'
 import OperBar from './components/operation'
 
-const Home = _ => {
-  let history = useHistory()
+export default class Home extends PureComponent {
 
-  const btnPress = _ => {
-    history.push("/buttons")
+  constructor(props) {
+    super(props)
+
+    this.btnPress = this.btnPress.bind(this)
   }
 
-  return (
-    <div className='container'>
+  btnPress = _ => {
+    this.props.history.push('/basePage')
+  }
 
-      <Title text='Lite UI' />
 
-      <Banner imgArr={[Svg_Ball, Svg_Deer, Svg_Glove, Svg_Spark]} />
+  render() {
+    return (
+      <div className='container'>
 
-      <OperBar
-        titleIcon={Svg_Menu}
-        operIcon={Svg_Right_Point}
-        text='基础'
-        desc='包含 颜色, 按钮, 图标 等'
-        onPress={btnPress}
-      />
+        <Title text='Lite UI' />
 
-      <OperBar
-        titleIcon={Svg_Menu}
-        operIcon={Svg_Right_Point}
-        text='布局'
-        desc='包含 列表, 浮层, 卡片 等'
-      />
+        <Banner imgArr={[Svg_Ball, Svg_Deer, Svg_Glove, Svg_Spark]} />
 
-      <OperBar
-        titleIcon={Svg_Menu}
-        operIcon={Svg_Right_Point}
-        text='操作反馈'
-        desc='包含 对话框, 轻提示, 图标 等'
-      />
+        <OperBar
+          titleIcon={Svg_Menu}
+          operIcon={Svg_Right_Point}
+          text='基础'
+          desc='包含 颜色, 按钮, 图标 等'
+          onPress={this.btnPress}
+        />
 
-      <OperBar
-        titleIcon={Svg_Menu}
-        operIcon={Svg_Right_Point}
-        text='视图'
-        desc='包含 通告栏, 标签, 徽标 等'
-      />
+        <OperBar
+          titleIcon={Svg_Menu}
+          operIcon={Svg_Right_Point}
+          text='布局'
+          desc='包含 列表, 浮层, 卡片 等'
+        />
 
-    </div>
-  )
+        <OperBar
+          titleIcon={Svg_Menu}
+          operIcon={Svg_Right_Point}
+          text='操作反馈'
+          desc='包含 对话框, 轻提示, 图标 等'
+        />
+
+        <OperBar
+          titleIcon={Svg_Menu}
+          operIcon={Svg_Right_Point}
+          text='视图'
+          desc='包含 通告栏, 标签, 徽标 等'
+        />
+
+      </div>
+    )
+  }
+
 }
-
-export default React.memo(Home)

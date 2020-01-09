@@ -1,0 +1,55 @@
+@import "../layout.scss";
+@import "../vars.scss";
+@import "../mixins.scss";
+
+.basePage {
+  @extend .container;
+
+  background-color: $white;
+
+  .titleBox {
+    background-color: $grey-bg;
+    @include remCalc(padding, 3, 0);
+    @include displayFlex();
+
+    .icon {
+      $iconLen: 3;
+
+      @include remCalc(width, $iconLen);
+      @include remCalc(height, $iconLen);
+      @include remCalc(margin-left, 2);
+    }
+
+    .text {
+      color: $color-primary;
+      font-weight: 700;
+      @include remCalc(padding-left, 1);
+      font-size: $title-fs;
+    }
+  }
+
+  .menuContainer {
+    box-sizing: border-box;
+    @include remCalc(margin-top, 4);
+
+    @include remCalc(padding, 0, 2);
+  }
+
+  .sections {
+    box-sizing: border-box;
+    @include displayFlex(row, space-between);
+    border-bottom: 1px solid $grey-bg;
+    @include remCalc(padding, 2, 0);
+
+    .text {
+      font-size: $menu-fs;
+    }
+
+    .icon {
+      $iconLen: 2;
+
+      @include remCalc(width, $iconLen);
+      @include remCalc(height, $iconLen);
+    }
+  }
+}
