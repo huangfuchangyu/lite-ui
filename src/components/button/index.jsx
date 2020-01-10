@@ -33,6 +33,7 @@ const Button = props => {
         ${disabled && 'lite-ui-button-disabled'}
         `
       }
+      onClick={onClick}
       {...restProps}
     >
       <span>{children}</span>

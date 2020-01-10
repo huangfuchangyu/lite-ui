@@ -4,7 +4,7 @@
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
 
-import React, { Children } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import './index.scss'
@@ -16,10 +16,10 @@ const Dialog = props => {
   let {
     visible,
     closable,
-    maskClosable,
-    onClose,
+    // maskClosable,
+    // onClose,
     transparent,
-    animationType,
+    // animationType,
     title,
     children
   } = props
@@ -27,15 +27,22 @@ const Dialog = props => {
   return (
     <>
 
-      <div className={`${transparent ? 'lite-ui-mask-transparent' : 'lite-ui-mask'}`} />
+      <div
+        className={
+          `
+          ${transparent ? 'lite-ui-mask-transparent' : 'lite-ui-mask'} 
+          ${visible && 'show-lite-ui-mask'}
+          `
+        }
+      />
 
-      <div className='lite-ui-dialog-content'>
+      <div className={`lite-ui-dialog-content ${visible && 'show-lite-ui-dialog'}`}>
 
         <section className='lite-ui-dialog'>
 
           {
             closable &&
-            <img src={closable} alt='' className='closeIcon' />
+            <img src={Svg_Close} alt='' className='closeIcon' />
           }
 
           <div className='title'>{title}</div>
@@ -55,7 +62,7 @@ const Dialog = props => {
 
 }
 
-Button.propTypes = {
+Dialog.propTypes = {
   visible: PropTypes.bool,                            // 对话框是否可见
   closable: PropTypes.bool,                           // 是否显示关闭按钮
   maskClosable: PropTypes.bool,                       // 点击蒙层是否允许关闭
@@ -65,7 +72,7 @@ Button.propTypes = {
   title: PropTypes.string,                            // 标题
 }
 
-Button.defaultProps = {
+Dialog.defaultProps = {
   visible: false,
   closable: true,
   maskClosable: true,

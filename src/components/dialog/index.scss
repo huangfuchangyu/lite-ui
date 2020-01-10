@@ -15,11 +15,15 @@
   right: 0;
 
   z-index: $z-index-high;
+
+  visibility: hidden;
+  transition: all 0.5s linear;
 }
 
 .lite-ui-mask {
   @extend .lite-ui-mask-base;
   background-color: $color-transparent-half;
+  opacity: 0;
 }
 
 .lite-ui-mask-transparent {
@@ -31,6 +35,7 @@
   @extend .lite-ui-mask-base;
 
   @include displayFlex(row, center);
+  transform: translate3d(0, 100%, 0);
 
   .lite-ui-dialog {
     position: relative;
@@ -49,4 +54,14 @@
       @include remCalc(height, 1);
     }
   }
+}
+
+.show-lite-ui-mask {
+  visibility: visible !important;
+  opacity: 1;
+}
+
+.show-lite-ui-dialog {
+  visibility: visible !important;
+  transform: translate3d(0, 0, 0) !important;
 }

@@ -26,10 +26,15 @@ export default class Home extends PureComponent {
     super(props)
 
     this.btnPress = this.btnPress.bind(this)
+    this.opertionPress = this.opertionPress.bind(this)
   }
 
   btnPress = _ => {
     this.props.history.push('/basePage')
+  }
+
+  opertionPress = _ => {
+    this.props.history.push('/operationPage')
   }
 
 
@@ -61,6 +66,7 @@ export default class Home extends PureComponent {
           operIcon={Svg_Right_Point}
           text='操作反馈'
           desc='包含 对话框, 轻提示, 图标 等'
+          onPress={this.opertionPress}
         />
 
         <OperBar
