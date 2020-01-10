@@ -8,3 +8,10 @@ $color-primary: #108ee9;
 $color-white: #fff;
 $color-warning: #e94f4f;
 $color-transparent: rgba(0, 0, 0, 0);
+$color-transparent-half: rgba(0, 0, 0, .5);
+
+// z-index
+
+$z-index-low: 9;
+$z-index-medium: 99;
+$z-index-high: 999;

@@ -1,0 +1,1 @@
+export { default as Svg_Close } from './svg/close.svg'

@@ -64,3 +64,16 @@ $browser-default-font-size: 16px !default;
   word-break: break-word;
   white-space: nowrap;
 }
+
+/// Flex 布局
+/// @param {*} $flexDirection [row | row-reverse | column | column-reverse]
+/// @param {*} $justifyContent [flex-start | flex-end | center | space-between | space-around]
+/// @param {*} $alignItems [flex-start | flex-end | center | baseline | stretch]
+
+@mixin displayFlex($flexDirection: row, $justifyContent: flex-start, $alignItems: center, $flexWrap: wrap) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $flexWrap;
+}

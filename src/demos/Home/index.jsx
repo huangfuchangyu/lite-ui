@@ -6,7 +6,6 @@
 
 import React, { PureComponent } from 'react'
 import './index.scss'
-// import { useHistory } from 'react-router-dom'
 
 import {
   Svg_Ball,

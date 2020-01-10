@@ -1,0 +1,52 @@
+/*
+ * Desc: dialog scss
+ * File Created: Friday, 10th January 2020 10:22:27 am
+ * Author: huangfuchangyu (changyu.huangfu@tcl.com)
+ */
+
+@import "../mixins.scss";
+@import "../vars.scss";
+
+.lite-ui-mask-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  z-index: $z-index-high;
+}
+
+.lite-ui-mask {
+  @extend .lite-ui-mask-base;
+  background-color: $color-transparent-half;
+}
+
+.lite-ui-mask-transparent {
+  @extend .lite-ui-mask-base;
+  background-color: $color-transparent;
+}
+
+.lite-ui-dialog-content {
+  @extend .lite-ui-mask-base;
+
+  @include displayFlex(row, center);
+
+  .lite-ui-dialog {
+    position: relative;
+    box-sizing: border-box;
+
+    @include remCalc(padding-top, 0.5);
+    @include displayFlex(column, center);
+
+    background-color: $color-white;
+
+    .closeIcon {
+      position: absolute;
+      @include remCalc(top, 0.5);
+      @include remCalc(right, 0.5);
+      @include remCalc(width, 1);
+      @include remCalc(height, 1);
+    }
+  }
+}
