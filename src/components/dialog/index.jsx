@@ -11,6 +11,8 @@ import './index.scss'
 
 import { Svg_Close } from '../assets'
 
+const DIALOG_FOOTER_TYPE = ['none', 'single', 'double']
+
 export default class Dialog extends PureComponent {
 
   static propTypes = {
@@ -25,6 +27,7 @@ export default class Dialog extends PureComponent {
     confirmText: PropTypes.string,                      // 确定按钮文字
     cancelOnClick: PropTypes.func,                      // 取消 按钮 点击 callback
     confirmOnClick: PropTypes.func,                     // 确定 按钮 点击 callback
+    footerType: PropTypes.oneOf(DIALOG_FOOTER_TYPE),    // footer 按钮 样式
   }
 
   static defaultProps = {
@@ -39,6 +42,7 @@ export default class Dialog extends PureComponent {
     confirmText: '确定',
     cancelOnClick: _ => console.log('please attach a method to Dialog component'),
     confirmOnClick: _ => console.log('please attach a method to Dialog component'),
+    footerType: DIALOG_FOOTER_TYPE[2]
   }
 
   constructor(props) {
@@ -142,6 +146,7 @@ export default class Dialog extends PureComponent {
       children,
       cancelText,
       confirmText,
+      footerType,
     } = this.props
 
     return (
@@ -175,8 +180,20 @@ export default class Dialog extends PureComponent {
             </div>
 
             <div className='footer'>
-              <div className='cancel' onClick={this.cancleBtnPress}>{cancelText}</div>
-              <div className='confirm' onClick={this.confirmBtnPress}>{confirmText}</div>
+
+              {
+                footerType === DIALOG_FOOTER_TYPE[2] &&
+                <>
+                  <div className='cancel' onClick={this.cancleBtnPress}>{cancelText}</div>
+                  <div className='confirm' onClick={this.confirmBtnPress}>{confirmText}</div>
+                </>
+              }
+
+              {
+                footerType === DIALOG_FOOTER_TYPE[1] &&
+                <div className='cancelSingle' onClick={this.cancleBtnPress}>{cancelText}</div>
+              }
+
             </div>
 
           </section>

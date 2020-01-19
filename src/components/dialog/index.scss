@@ -77,18 +77,28 @@
       box-sizing: border-box;
       width: 100%;
       @include displayFlex();
-      border-top: 1px solid $grey-bg;
 
-      div {
+      .footer-btn-base {
         box-sizing: border-box;
         width: 50%;
         @include remCalc(padding, 1, 0);
         text-align: center;
         font-size: #{$dialog-header-fz}px;
+        border-top: 1px solid $grey-bg;
+      }
+
+      .confirm {
+        @extend .footer-btn-base;
       }
 
       .cancel {
+        @extend .footer-btn-base;
         border-right: 1px solid $grey-bg;
+      }
+
+      .cancelSingle {
+        @extend .footer-btn-base;
+        width: 100%;
       }
     }
   }
