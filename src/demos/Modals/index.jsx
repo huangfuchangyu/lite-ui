@@ -13,28 +13,31 @@ const DemoPageOfModals = _ => {
 
   const [isShowModal, setIsShowModal] = useState(false)
 
-  const openModal = _ => {
-    setIsShowModal(!isShowModal)
+  const showModal = () => {
+    setIsShowModal(true)
+  }
 
-    setTimeout(
-      _ => {
-        setIsShowModal(false)
-      },
-      5000
-    )
+  const dialogConfirm = () => {
+    setIsShowModal(false)
   }
 
   return (
     <>
       <div className='demoBlank' />
 
-      <Button type='primary' size='large' onClick={openModal} > show Modal </Button>
+      <Button type='primary' size='large' onClick={showModal} > show Modal </Button>
 
-      <Dialog visible={isShowModal}>哈哈哈</Dialog>
+      <Dialog
+        visible={isShowModal}
+        title='标题'
+        onClose={dialogConfirm}
+        confirmOnClick={dialogConfirm}
+      >
+        对 我就是 dialog 正文
+      </Dialog>
 
     </>
   )
 
 }
-
 export default React.memo(DemoPageOfModals)

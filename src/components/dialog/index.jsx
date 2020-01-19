@@ -4,82 +4,187 @@
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import './index.scss'
 
 import { Svg_Close } from '../assets'
 
-const Dialog = props => {
+export default class Dialog extends PureComponent {
 
-  let {
-    visible,
-    closable,
-    // maskClosable,
-    // onClose,
-    transparent,
-    // animationType,
-    title,
-    children
-  } = props
+  static propTypes = {
+    visible: PropTypes.bool,                            // 对话框是否可见
+    closable: PropTypes.bool,                           // 是否显示关闭按钮
+    maskClosable: PropTypes.bool,                       // 点击蒙层是否允许关闭
+    onClose: PropTypes.func,                            // dialog 关闭时 callback
+    transparent: PropTypes.bool,                        // 是否背景透明
+    animationType: PropTypes.oneOf(['slide', 'fade']),  // 动画效果
+    title: PropTypes.string,                            // 标题
+    cancelText: PropTypes.string,                       // 取消 按钮文字
+    confirmText: PropTypes.string,                      // 确定按钮文字
+    cancelOnClick: PropTypes.func,                      // 取消 按钮 点击 callback
+    confirmOnClick: PropTypes.func,                     // 确定 按钮 点击 callback
+  }
 
-  return (
-    <>
+  static defaultProps = {
+    visible: false,
+    closable: false,
+    maskClosable: true,
+    onClose: _ => console.log('please attach a method to Dialog component'),
+    transparent: false,
+    animationType: 'slide',
+    title: null,
+    cancelText: '取消',
+    confirmText: '确定',
+    cancelOnClick: _ => console.log('please attach a method to Dialog component'),
+    confirmOnClick: _ => console.log('please attach a method to Dialog component'),
+  }
 
-      <div
-        className={
-          `
-          ${transparent ? 'lite-ui-mask-transparent' : 'lite-ui-mask'} 
-          ${visible && 'show-lite-ui-mask'}
-          `
-        }
-      />
+  constructor(props) {
+    super(props)
 
-      <div className={`lite-ui-dialog-content ${visible && 'show-lite-ui-dialog'}`}>
+    this.state = {
+      isMutableShow: false
+    }
 
-        <section className='lite-ui-dialog'>
+    this.cancleBtnPress = this.cancleBtnPress.bind(this)
+    this.confirmBtnPress = this.confirmBtnPress.bind(this)
+    this.maskPress = this.maskPress.bind(this)
+    this.dialogBodyPress = this.dialogBodyPress.bind(this)
+  }
 
-          {
-            closable &&
-            <img src={Svg_Close} alt='' className='closeIcon' />
+  componentDidMount() {
+    let { visible } = this.props
+
+    this.dialogVisiable(visible)
+  }
+
+  componentWillReceiveProps({ visible }) {
+    let { isMutableShow } = this.state
+
+    isMutableShow !== visible && this.dialogVisiable(visible)
+  }
+
+  /**
+   * 取消 按钮点击
+   */
+  cancleBtnPress() {
+    let { cancelOnClick } = this.props
+
+    cancelOnClick()
+    this.dialogVisiable(false)
+    this.dialogHasClosed()
+  }
+
+  /**
+   * 确定 按钮点击
+   */
+  confirmBtnPress() {
+    let { confirmOnClick } = this.props
+
+    confirmOnClick()
+  }
+
+  /**
+   * 蒙层 点击
+   */
+  maskPress() {
+    let { maskClosable } = this.props
+
+    if (maskClosable) {
+      this.dialogVisiable(false)
+      this.dialogHasClosed()
+    }
+  }
+
+  /**
+   * 触发 dialog 关闭 callback
+   */
+  dialogHasClosed() {
+    let { onClose } = this.props
+
+    let closedTimeout = setTimeout(
+      () => {
+        clearTimeout(closedTimeout)
+        onClose()
+      },
+      0
+    )
+  }
+
+
+  /**
+   * 打开 、关闭  dialog
+   * @param {boolean} [isMutableShow=false]
+   */
+  dialogVisiable(isMutableShow = false) {
+    this.setState({ isMutableShow })
+  }
+
+  /**
+   * dialog body 点击 阻止时间冒泡
+   * @param {*} e
+   */
+  dialogBodyPress(e) {
+    e.stopPropagation()
+  }
+
+  render() {
+
+    let { isMutableShow } = this.state
+
+    let {
+      closable,
+      transparent,
+      // animationType,
+      title,
+      children,
+      cancelText,
+      confirmText,
+    } = this.props
+
+    return (
+      <>
+
+        <div
+          className={
+            `
+            ${transparent ? 'lite-ui-mask-transparent' : 'lite-ui-mask'} 
+            ${isMutableShow && 'show-lite-ui-mask'}
+            `
           }
+        />
 
-          <div className='title'>{title}</div>
+        <div className={`lite-ui-dialog-content ${isMutableShow && 'show-lite-ui-dialog'}`} onClick={this.maskPress} >
 
-          <div className='body'>
-            {children}
-          </div>
+          <section className='lite-ui-dialog' onClick={this.dialogBodyPress}>
 
-          <div className='footer'></div>
+            {
+              closable &&
+              <img src={Svg_Close} alt='' className='closeIcon' />
+            }
 
-        </section>
+            {
+              title &&
+              <div className='title'>{title}</div>
+            }
 
-      </div>
+            <div className='body'>
+              {children}
+            </div>
 
-    </>
-  )
+            <div className='footer'>
+              <div className='cancel' onClick={this.cancleBtnPress}>{cancelText}</div>
+              <div className='confirm' onClick={this.confirmBtnPress}>{confirmText}</div>
+            </div>
+
+          </section>
+
+        </div>
+
+      </>
+    )
+  }
 
 }
-
-Dialog.propTypes = {
-  visible: PropTypes.bool,                            // 对话框是否可见
-  closable: PropTypes.bool,                           // 是否显示关闭按钮
-  maskClosable: PropTypes.bool,                       // 点击蒙层是否允许关闭
-  onClose: PropTypes.func,                            // 点击 x 或 mask 回调
-  transparent: PropTypes.bool,                        // 是否背景透明
-  animationType: PropTypes.oneOf(['slide', 'fade']),  // 动画效果
-  title: PropTypes.string,                            // 标题
-}
-
-Dialog.defaultProps = {
-  visible: false,
-  closable: true,
-  maskClosable: true,
-  onClose: _ => console.log('please attach a method to Dialog component'),
-  transparent: false,
-  animationType: 'slide',
-  title: null,
-}
-
-export default React.memo(Dialog)
