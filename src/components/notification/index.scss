@@ -1,0 +1,50 @@
+/*
+ * Desc: notification scss
+ * File Created: Sunday, 19th January 2020 4:12:52 pm
+ * Author: huangfuchangyu (changyu.huangfu@tcl.com)
+ */
+@import "../mixins.scss";
+@import "../vars.scss";
+
+.lite-ui-notification-hide {
+  visibility: hidden;
+  transform: translate3d(0, -100%, 0);
+}
+
+.lite-ui-notification-show {
+  visibility: visible !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+.lite-ui-notification {
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: $z-index-high;
+
+  @extend .lite-ui-notification-hide;
+  transition: all 0.4s linear;
+
+  font-size: $dialog-body-fz;
+  text-align: center;
+  overflow: hidden;
+
+  @include remCalc(padding, 1, 0);
+}
+
+.lite-ui-notification-success-theme {
+  background-color: $color-primary;
+  color: $color-white;
+}
+.lite-ui-notification-warning-theme {
+  background-color: $color-warning;
+  color: $color-white;
+}
+.lite-ui-notification-info-theme {
+  background-color: $color-white;
+  color: $color-transparent-half;
+}

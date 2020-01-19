@@ -16,6 +16,10 @@ const OperatoinPage = props => {
     props.history.push('/modals')
   }
 
+  const jumpToNotification = _ => {
+    props.history.push('/notifications')
+  }
+
   return (
     <div className='basePage'>
 
@@ -36,8 +40,8 @@ const OperatoinPage = props => {
           <img src={Svg_Right_Point_Base} alt="" className='icon' />
         </section>
 
-        <section className='sections'>
-          <span className='text'>Message 消息通知</span>
+        <section className='sections' onClick={jumpToNotification}>
+          <span className='text'>Notification 消息通知</span>
           <img src={Svg_Right_Point_Base} alt="" className='icon' />
         </section>
 

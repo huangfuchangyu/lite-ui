@@ -7,6 +7,7 @@ import OperationPage from '../demos/OperationPage'
 
 import DemoButtons from '../demos/Buttons'
 import DemoModals from '../demos/Modals'
+import DemoNotifications from '../demos/Notifications'
 
 import { BrowserRouter as Router, Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
@@ -38,11 +39,13 @@ function AnimationApp() {
 
   return (
     <TransitionGroup>
+
       <CSSTransition
         key={location.key}
         classNames="my-node"
         timeout={400}
       >
+        
         <Switch location={location}>
 
           <Route path="/home" component={Home} />
@@ -55,8 +58,12 @@ function AnimationApp() {
 
           <Route exact path="/modals" component={DemoModals} />
 
+          <Route exact path="/notifications" component={DemoNotifications} />
+
         </Switch>
+
       </CSSTransition>
+
     </TransitionGroup>
   );
 }
