@@ -5,3 +5,9 @@
 .demoBlank {
   @include remCalc(height, 4);
 }
+
+.demoNotifications {
+  @extend .container;
+
+  background-color: $white;
+}

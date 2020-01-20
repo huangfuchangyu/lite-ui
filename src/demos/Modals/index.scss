@@ -1,3 +1,9 @@
 @import "../layout.scss";
 @import "../vars.scss";
 @import "../mixins.scss";
+
+.demoModals {
+  @extend .container;
+
+  background-color: $white;
+}

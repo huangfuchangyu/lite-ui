@@ -22,7 +22,7 @@ const DemoPageOfModals = _ => {
   }
 
   return (
-    <>
+    <div className='demoModals'>
       <div className='demoBlank' />
 
       <Button type='primary' size='large' onClick={showModal} > show Modal </Button>
@@ -36,7 +36,7 @@ const DemoPageOfModals = _ => {
         对 我就是 dialog 正文
       </Dialog>
 
-    </>
+    </div>
   )
 
 }

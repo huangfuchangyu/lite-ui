@@ -17,14 +17,14 @@ const DemoPageOfNotifications = () => {
   }
 
   return (
-    <>
+    <div className='demoNotifications'>
       <div className='demoBlank' />
 
       <Button type='primary' size='large' onClick={showNotification} > show Notification </Button>
 
       <Notification isShow={isShowNotice}>Notifications</Notification>
 
-    </>
+    </div>
   )
 
 }

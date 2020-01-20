@@ -24,7 +24,7 @@ export default function App() {
           <Redirect to="home" />
         </Route>
 
-        <Route path="*">
+        <Route exact path="*">
           <AnimationApp />
         </Route>
 
@@ -35,22 +35,22 @@ export default function App() {
 }
 
 function AnimationApp() {
-  let location = useLocation();
+  let location = useLocation()
 
   return (
     <TransitionGroup>
 
       <CSSTransition
-        key={location.key}
-        classNames="my-node"
-        timeout={400}
+        key={location.pathname}
+        classNames={'my-node'}
+        timeout={6000}
       >
-        
+
         <Switch location={location}>
 
-          <Route path="/home" component={Home} />
+          <Route exact path="/home" component={Home} />
 
-          <Route path="/basePage" component={BasePage} />
+          <Route exact path="/basePage" component={BasePage} />
 
           <Route exact path="/operationPage" component={OperationPage} />
 
