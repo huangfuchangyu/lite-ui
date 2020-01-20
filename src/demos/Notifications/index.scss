@@ -10,4 +10,6 @@
   @extend .container;
 
   background-color: $white;
+
+  @include remCalc(padding, 0, 1);
 }

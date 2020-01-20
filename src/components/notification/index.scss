@@ -8,11 +8,13 @@
 
 .lite-ui-notification-hide {
   visibility: hidden;
+  opacity: 0;
   transform: translate3d(0, -100%, 0);
 }
 
 .lite-ui-notification-show {
   visibility: visible !important;
+  opacity: 1;
   transform: translate3d(0, 0, 0) !important;
 }
 

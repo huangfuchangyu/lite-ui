@@ -13,7 +13,11 @@ const DemoPageOfNotifications = () => {
   const [isShowNotice, setIsShowNotice] = useState(false)
 
   const showNotification = () => {
-    setIsShowNotice(!isShowNotice)
+    setIsShowNotice(true)
+  }
+
+  const closeNotification = () => {
+    setIsShowNotice(false)
   }
 
   return (
@@ -22,7 +26,13 @@ const DemoPageOfNotifications = () => {
 
       <Button type='primary' size='large' onClick={showNotification} > show Notification </Button>
 
-      <Notification isShow={isShowNotice}>Notifications</Notification>
+      <Notification
+        isShow={isShowNotice}
+        onClose={closeNotification}
+        type='warning'
+      >
+        Notifications
+        </Notification>
 
     </div>
   )
