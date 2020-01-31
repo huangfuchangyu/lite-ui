@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import './index.scss'
 
 const NOTIFICATION_TYPES = ['success', 'warning', 'info']
+const CSS_ANIMATION_DURING = 400
 
 export default class Notification extends PureComponent {
 
@@ -59,7 +60,7 @@ export default class Notification extends PureComponent {
    */
   switchNotificaiton(isMutableShow = false) {
 
-    let { duration, onClose } = this.props
+    let { duration } = this.props
 
     if (isMutableShow === false) return
 
@@ -69,12 +70,28 @@ export default class Notification extends PureComponent {
       () => {
 
         clearTimeout(autoCloseSto)
+
         this.setState({ isMutableShow: false })
 
-        onClose()
+        this.callOnCloseCb()
 
       }, duration
     )
+  }
+
+  callOnCloseCb() {
+
+    let { onClose } = this.props
+
+    let animTimeout = setTimeout(
+
+      () => {
+        clearTimeout(animTimeout)
+        onClose()
+      },
+      CSS_ANIMATION_DURING
+    )
+
   }
 
 

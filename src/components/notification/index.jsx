@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 
 import Notification from './Notification'
 
-export default function show(obj = {}) {
+function _notification(obj = {}) {
 
   const div = createComponentContainer()
 
@@ -83,4 +83,11 @@ export default function show(obj = {}) {
 
   }
 
+}
+
+export default {
+  show: param => _notification(Object.assign({}, param, { type: 'success' })),
+  success: param => _notification(Object.assign({}, param, { type: 'success' })),
+  warning: param => _notification(Object.assign({}, param, { type: 'warning' })),
+  info: param => _notification(Object.assign({}, param, { type: 'info' })),
 }

@@ -10,7 +10,7 @@ import { Button, Notification } from '../../components'
 
 const DemoPageOfNotifications = () => {
 
-  const showNotification = () => Notification({ isShow: true })
+  const showNotification = () => Notification.show({ isShow: true })
 
   return (
     <div className='demoNotifications'>
