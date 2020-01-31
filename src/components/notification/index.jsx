@@ -1,96 +1,86 @@
-/*
- * Desc: notification component
- * File Created: Sunday, 19th January 2020 4:12:43 pm
- * Author: huangfuchangyu (changyu.huangfu@tcl.com)
- */
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import './index.scss'
+import Notification from './Notification'
 
-const NOTIFICATION_TYPES = ['success', 'warning', 'info']
+export default function show(obj = {}) {
 
-export default class Notification extends PureComponent {
+  const div = createComponentContainer()
 
-  static propTypes = {
-    isShow: PropTypes.bool,
-    duration: PropTypes.number,
-    onClose: PropTypes.func,
-    type: PropTypes.oneOf(NOTIFICATION_TYPES),
-  }
-
-  static defaultProps = {
-    isShow: false,
-    duration: 3000,
-    onClose: () => console.log('please attach a method to this component'),
-    type: NOTIFICATION_TYPES[0],
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isMutableShow: false,
-    }
-  }
-
-  componentDidMount() {
-    let { isShow } = this.props
-
-    this.switchNotificaiton(isShow)
-  }
-
-  componentWillReceiveProps({ isShow }) {
-    let { isMutableShow } = this.state
-
-    isMutableShow !== isShow && this.switchNotificaiton(isShow)
-  }
-
+  renderComponent(Notification, div)
 
   /**
-   * 打开，关闭 notification
-   * @param {boolean} [isMutableShow=false]
+   *createComponentContainer
+   *
+   * @returns {Elements} div
    */
-  switchNotificaiton(isMutableShow = false) {
+  function createComponentContainer() {
 
-    let { duration, onClose } = this.props
+    const div = document.createElement('div')
+    document.body.appendChild(div)
 
-    if (isMutableShow === false) return
-
-    this.setState({ isMutableShow })
-
-    let autoCloseSto = setTimeout(
-      () => {
-
-        clearTimeout(autoCloseSto)
-        this.setState({ isMutableShow: false })
-
-        onClose()
-
-      }, duration
-    )
+    return div
   }
 
+  /**
+   *destoryComponentContainer
+   *
+   * @param {Element} ele
+   */
+  function destoryComponentContainer(ele) {
 
-  render() {
+    ele && ele.parentNode && ele.parentNode.removeChild(ele)
+  }
 
-    const { children, type } = this.props
-    let { isMutableShow } = this.state
+  /**
+   * show component 二次渲染  为了 css 动画生效
+   */
+  function showComponent() {
 
-    return (
-      <div
-        className={
-          `
-          ${isMutableShow ? 'lite-ui-notification-show' : 'lite-ui-notification-hide'} 
-          lite-ui-notification 
-          lite-ui-notification-${type}-theme
-        `
-        }
-      >
-        {children}
-      </div>
+    let showTimeout = setTimeout(
+      () => {
+        clearTimeout(showTimeout)
+        renderComponent(Notification, div, Object.assign({}, obj, { isShow: true }))
+      },
+      0
     )
+
+  }
+
+  /**
+   *  notification onClose callback
+   */
+  function closeComponent() {
+    let { onClose } = obj
+
+    destoryComponentContainer(div)
+    onClose && onClose()
+  }
+
+  /**
+   *render Component
+   *
+   * @param {*} Comp
+   * @param {*} container
+   */
+  function renderComponent(Comp, container, params = {}) {
+
+    let { isShow, duration, text, type } = params
+
+    ReactDOM.render(
+      <Comp
+        isShow={isShow || false}
+        type={type}
+        duration={duration}
+        _compMounted={showComponent}
+        onClose={closeComponent}
+      >
+        {text}
+      </Comp>
+      ,
+      container,
+    )
+
   }
 
 }
-

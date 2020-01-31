@@ -3,36 +3,20 @@
  * File Created: Sunday, 19th January 2020 5:25:08 pm
  * Author: huangfuchangyu (changyu.huangfu@tcl.com)
  */
-import React, { useState } from 'react'
+import React from 'react'
 import './index.scss'
 
 import { Button, Notification } from '../../components'
 
 const DemoPageOfNotifications = () => {
 
-  const [isShowNotice, setIsShowNotice] = useState(false)
-
-  const showNotification = () => {
-    setIsShowNotice(true)
-  }
-
-  const closeNotification = () => {
-    setIsShowNotice(false)
-  }
+  const showNotification = () => Notification({ isShow: true })
 
   return (
     <div className='demoNotifications'>
       <div className='demoBlank' />
 
       <Button type='primary' size='large' onClick={showNotification} > show Notification </Button>
-
-      <Notification
-        isShow={isShowNotice}
-        onClose={closeNotification}
-        type='warning'
-      >
-        Notifications
-        </Notification>
 
     </div>
   )
